@@ -39,7 +39,7 @@ public class LaunchBinaryTree2 {
 
     }
 
-    int height(Node node){
+    static int height(Node node){
         if (node == null) return 0;
         return 1+ Math.max(height(node.left) ,height(node.right));
     }
@@ -67,6 +67,12 @@ public class LaunchBinaryTree2 {
     }
 
 
+   static boolean isBalanced(Node root){
+        if (root == null) return  false;
+        return Math.abs(height(root.left) - height(root.right)) <=1 && isBalanced(root.left) && isBalanced(root.right);
+    }
+
+
 
 
     public static void main(String[] args) {
@@ -90,5 +96,9 @@ public class LaunchBinaryTree2 {
         System.out.println();
         System.out.println("Level order Travels" );
         levelOrder(tree);
+
+
+        System.out.println(isBalanced(tree));
+
     }
 }
