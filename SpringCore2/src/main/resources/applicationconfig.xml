@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean class="org.pm.service.Empolyee" id="empolyee">
+       <constructor-arg index="0"  name="id" value="01"/>
+       <constructor-arg index="1" name="name" value="Venkatesh"/>
+       <constructor-arg index="2" name="city" value="bangaluru"/>
+       <constructor-arg index="3" name="salary" value="20"/>
+   </bean>
+
+    <bean class="org.pm.service.Empolyee" id="empolyee2">
+        <constructor-arg index="0"  name="id" value="02"/>
+        <constructor-arg index="1" name="name" value="Venkatesh2"/>
+        <constructor-arg index="2" name="city" value="bangaluru2"/>
+        <constructor-arg index="3" name="salary" value="202"/>
+    </bean>
+
+    <bean class="org.pm.service.Empolyee" id="empolyee3" c:id="129" c:name="Rahul" c:city="20093" c:salary="300" />
+
+
+
+
+</beans>
