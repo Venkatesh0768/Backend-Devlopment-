@@ -10,6 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class SpringDataJpaApplication {
@@ -17,12 +18,11 @@ public class SpringDataJpaApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext container = SpringApplication.run(SpringDataJpaApplication.class, args);
         UserServiceImpl service  = container.getBean(UserServiceImpl.class);
-        service.registerUser(new User(6 , "Venky"));
-        List<User>  list = new ArrayList<>();
-        for (int i = 0; i <5 ; i++) {
-            list.add(new User(i , "Nve"));
+        Optional<User> user = service.searchUserById(2);
+        if(user.isPresent()){
+            System.out.println(user.get().getName());
         }
-        service.registerMultipleUser(list);
+
     }
 
 }
