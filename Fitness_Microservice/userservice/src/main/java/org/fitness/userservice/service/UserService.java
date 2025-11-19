@@ -12,4 +12,5 @@ public interface UserService {
     UserResponseDto getUserById(UUID id);
     UserResponseDto updateUser(UserRequestDto requestDto , UUID id);
     String deleteUser(UUID id);
+    Boolean isValidUser(UUID uuid);
 }

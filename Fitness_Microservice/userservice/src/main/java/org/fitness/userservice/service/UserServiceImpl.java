@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
@@ -74,6 +76,11 @@ public class UserServiceImpl implements UserService {
         User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User Not Found"));
         repository.delete(user);
         return "User Deleted SuccessFully";
+    }
+
+    @Override
+    public Boolean isValidUser(UUID id) {
+        return repository.existsById(id);
     }
 
     private UserResponseDto mapToDto(User user) {

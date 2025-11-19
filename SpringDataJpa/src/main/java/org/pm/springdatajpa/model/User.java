@@ -13,4 +13,5 @@ public class User {
     @Id
     private Integer id;
     private String name;
+    private int cost;
 }

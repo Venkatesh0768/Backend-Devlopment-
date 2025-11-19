@@ -2,7 +2,6 @@ package org.fitness.activityservice.controller;
 
 import org.fitness.activityservice.dtos.ActivityRequestDto;
 import org.fitness.activityservice.dtos.ActivityResponseDto;
-import org.fitness.activityservice.service.ActivityService;
 import org.fitness.activityservice.service.ActivityServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

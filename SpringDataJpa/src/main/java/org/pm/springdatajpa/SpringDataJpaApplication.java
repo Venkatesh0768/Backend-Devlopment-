@@ -18,10 +18,8 @@ public class SpringDataJpaApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext container = SpringApplication.run(SpringDataJpaApplication.class, args);
         UserServiceImpl service  = container.getBean(UserServiceImpl.class);
-        Optional<User> user = service.searchUserById(2);
-        if(user.isPresent()){
-            System.out.println(user.get().getName());
-        }
+        System.out.println(service.updateThePriceBasedOnTHeName(200030 , "Venky"));
+
 
     }
 

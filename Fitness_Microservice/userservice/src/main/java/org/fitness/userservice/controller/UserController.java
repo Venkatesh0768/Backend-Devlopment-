@@ -21,6 +21,11 @@ public class UserController {
         this.service = service;
     }
 
+    @GetMapping("/{id}/valid")
+    public ResponseEntity<Boolean> isValidUser(@PathVariable UUID id){
+        return ResponseEntity.ok(service.isValidUser(id));
+    }
+
     @PostMapping
     public ResponseEntity<UserResponseDto> registerUser(@Valid @RequestBody UserRequestDto requestDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.registerUser(requestDto));

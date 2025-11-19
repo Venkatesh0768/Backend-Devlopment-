@@ -10,11 +10,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.web.bind.annotation.BindParam;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 @Document(collection = "activities")
@@ -32,6 +30,7 @@ public class Activity {
     private LocalDateTime startTime;
     @Field("metrics")
     private Map<String , Object> additionalMetrics;
+
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
