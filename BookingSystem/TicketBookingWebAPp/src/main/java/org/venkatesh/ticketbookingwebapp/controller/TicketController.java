@@ -1,42 +1,42 @@
 package org.venkatesh.ticketbookingwebapp.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.venkatesh.ticketbookingwebapp.model.Passenger;
 import org.venkatesh.ticketbookingwebapp.model.Ticket;
 import org.venkatesh.ticketbookingwebapp.service.TicketService;
-
-@RestController
+@Controller
 public class TicketController {
-    private final  TicketService service;
+
+    private final TicketService service;
 
     public TicketController(TicketService service) {
         this.service = service;
     }
 
-    @PostMapping("/book-ticket")
-    public String bookTicket(@ModelAttribute Passenger passenger , Model model){
-        Integer ticketNumber = service.registerPassenger(passenger);
-        model.addAttribute("ticketNumber" , ticketNumber);
-        return "index";
-    }
-
-    @GetMapping("/passenger-form")
-    public String bookTicketForm(@ModelAttribute Passenger passenger , Model model){
-        Integer ticketNumber = service.registerPassenger(passenger);
-        model.addAttribute("passenger" , new Passenger());
-        return "index";
-    }
-    @PostMapping("/ticket-form")
-    public String ticketForm(@ModelAttribute Passenger passenger , Model model){
-        model.addAttribute("passenger" , new Passenger());
+    @GetMapping("/ticket-form")
+    public String ticketForm(Model model) {
+        model.addAttribute("passenger", new Passenger());
         return "ticket-form";
     }
 
+    @PostMapping("/book-ticket")
+    public String bookTicket(@ModelAttribute Passenger passenger, Model model) {
+        Integer ticketNumber = service.registerPassenger(passenger);
+        model.addAttribute("ticketNumber", ticketNumber);
+        return "index";
+    }
+
     @GetMapping("/get-ticket")
-    public String getTicket(@RequestParam("ticketNumber") Integer ticketNumber, Model model){
-        Ticket ticket = service.getFullTicket(ticketNumber);
-        model.addAttribute("ticket" , ticket);
+    public String getTicket(@RequestParam(required = false) Integer ticketNumber, Model model) {
+        if(ticketNumber != null){
+            Ticket ticket = service.getFullTicket(ticketNumber);
+            model.addAttribute("ticket", ticket);
+        }
         return "ticket-info";
     }
 }

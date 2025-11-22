@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Passenger Ticket Booking</title>
+</head>
+<body>
+
+<h2>Passenger Ticket Booking</h2>
+
+<form action="/book-ticket" method="post" th:object="${passenger}">
+    <label>Passenger ID (PID):</label>
+    <input type="number" th:field="*{pid}" required/><br><br>
+
+
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required/><br><br>
+
+    <label>Departure:</label>
+    <input type="text" th:field="*{departure}" required/><br><br>
+
+    <label>Arrival:</label>
+    <input type="text" th:field="*{arrival}" required/><br><br>
+
+    <label>Date of Journey:</label>
+    <input type="datetime-local" th:field="*{dateOfJourney}" required/><br><br>
+
+    <button type="submit">Book Ticket</button>
+</form>
+
+</body>
+</html>
