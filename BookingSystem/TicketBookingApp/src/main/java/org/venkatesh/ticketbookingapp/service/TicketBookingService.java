@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.venkatesh.ticketbookingapp.model.Passenger;
 import org.venkatesh.ticketbookingapp.repository.PassengerRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,5 +25,10 @@ public class TicketBookingService implements ITicketBooking {
     public Passenger fetchPassengerInfo(Integer id) {
         Optional<Passenger> optional = repository.findById(id);
         return optional.get();
+    }
+
+    @Override
+    public List<Passenger> fetchAllPassengers() {
+        return repository.findAll();
     }
 }
