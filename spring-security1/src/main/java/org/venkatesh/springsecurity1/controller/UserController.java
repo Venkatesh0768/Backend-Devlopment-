@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.venkatesh.springsecurity1.model.User;
+import org.venkatesh.springsecurity1.service.JwtTokenService;
 import org.venkatesh.springsecurity1.service.UserService;
 
 import java.util.List;
@@ -19,16 +20,18 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
+    private final JwtTokenService jwtService;
 
     @GetMapping
     public String checkOauth(){
         return "Oauth is Working";
     }
 
-    public UserController(UserService userService, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtTokenService jwtService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
     @GetMapping("/login/{username}/{password}")
@@ -41,7 +44,7 @@ public class UserController {
         );
 
         if (authentication.isAuthenticated()) {
-            return "Successfully Login";
+            return jwtService.generateToken(username );
         }
         return "Invalid User";
     }
