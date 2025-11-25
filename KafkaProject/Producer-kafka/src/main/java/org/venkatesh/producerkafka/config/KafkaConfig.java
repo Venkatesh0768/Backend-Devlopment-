@@ -17,19 +17,23 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-
-
     @Bean
-    public KafkaTemplate<String , Customer> kafkaTemplate(){
-        return new KafkaTemplate<String, Customer>(producerFactory());
+    public KafkaTemplate<String, Customer> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
     }
 
     @Bean
     public ProducerFactory<String, Customer> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG , AppConstant.HOST_URL);
-        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG , StringSerializer.class);
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG , JacksonJsonSerializer.class);
-        return new DefaultKafkaProducerFactory<>(configProps);
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, AppConstant.HOST_URL);
+
+        // Optional: Reliability settings
+        configProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+        configProps.put(ProducerConfig.ACKS_CONFIG, "all");
+
+        JacksonJsonSerializer<Customer> valueSerializer = new JacksonJsonSerializer<>();
+        return new DefaultKafkaProducerFactory<>(configProps,
+                new StringSerializer(),
+                valueSerializer);
     }
 }
