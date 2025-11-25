@@ -8,7 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
         <module name="Microservice2" />
+        <module name="Api-Gateway" />
         <module name="AdminServer" />
+        <module name="CloudConfigServer" />
       </profile>
       <profile name="Annotation profile for Microservice1" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -27,6 +29,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AdminServer" options="-parameters" />
+      <module name="Api-Gateway" options="-parameters" />
+      <module name="CloudConfigServer" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
       <module name="Microservice1" options="-parameters" />
       <module name="Microservice1 (1)" options="-parameters" />

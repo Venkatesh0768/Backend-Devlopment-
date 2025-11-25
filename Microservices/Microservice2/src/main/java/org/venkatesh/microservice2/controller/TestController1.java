@@ -15,6 +15,6 @@ public class TestController1 {
 
     @GetMapping("/get-info2")
     public String getInfo2(){
-        return testingService.getInfo2();
+        return "working";
     }
 }
